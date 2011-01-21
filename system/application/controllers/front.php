@@ -17,7 +17,9 @@ class Front extends MY_Controller {
 		
 			try {
 			
-			$contents = $this->facebook->api('/me/friends');//Fetch the friends names and ids
+				$userAPIData['method'] = 'fql.query';
+				$userAPIData['query']  = 'SELECT uid, name, pic_square FROM user WHERE uid IN (SELECT uid2 FROM friend WHERE uid1 = me() Limit 28)';
+				$friendsDetails = $this->facebook->api($userAPIData);
 			} catch(Exception $ex) {
 				if($ex->getCode() == 0) {
 				
@@ -26,11 +28,10 @@ class Front extends MY_Controller {
 					exit;
 				}
 			}
-			$data['friends'] = $contents['data'];
+			$data['friends'] = $friendsDetails;
 			$this->load->view('friends', $data);
 		}
 	}
 }
-
 /* End of file welcome.php */
 /* Location: ./system/application/controllers/welcome.php */
