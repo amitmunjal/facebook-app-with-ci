@@ -22,6 +22,7 @@ $ret .= meta( $meta ); //meta() function for meta tags
 $ret .= link_tag('css/tipsy.css'); //link_tag() function for link tag
 $ret .= script_tag('js/jquery-1.3.2.min.js'); //script_tag() function for the script tag -- loaded from myhtml helper
 $ret .= script_tag('js/jquery.tipsy.js');
+$ret .= script_tag('js/friends.js');
 
 //ready() function for the ToolTip
 $ret .= '<script type="text/javascript">';
